@@ -6,6 +6,7 @@ import (
 	"log"
 	"math/big"
 	"net/http"
+	"os"
 	"strconv"
 	"time"
 
@@ -17,7 +18,11 @@ func main() {
 	router := mux.NewRouter()
 	router.HandleFunc("/hello", Hello).Methods("GET")
 	router.HandleFunc("/loadtest/iterations/{iterations}", Loadtest).Methods("GET")
-	log.Fatal(http.ListenAndServe(":8000", router))
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8000"
+	}
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", port), router))
 }
 
 /*
