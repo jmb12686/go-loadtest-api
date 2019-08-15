@@ -11,7 +11,7 @@ COPY . .
 # Build the command inside the container.
 # (You may fetch or manage dependencies here,
 # either manually or with a tool like "godep".)
-RUN CGO_ENABLED=0 GOOS=linux go build -v -o go-loadtest-api
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=arm go build -v -o go-loadtest-api
 
 # Use a Docker multi-stage build to create a lean production image.
 # https://docs.docker.com/develop/develop-images/multistage-build/#use-multi-stage-builds
