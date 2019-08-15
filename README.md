@@ -1,4 +1,7 @@
 # Go Loadtest API
+![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/jmb12686/go-loadtest-api)
+![Docker Pulls](https://img.shields.io/docker/pulls/jmb12686/go-loadtest-api)
+
 Simple program, written in Go, to generate CPU load thru a RESTFul Web API.
 
 ## DockerHub Automated Builds
