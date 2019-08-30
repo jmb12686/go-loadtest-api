@@ -38,4 +38,5 @@ http://localhost:8000/hello
 http://localhost:8000/loadtest/iterations/$NUM_ITERATIONS
 ```
 
-
+### Docker Healthcheck Info
+TODO!
