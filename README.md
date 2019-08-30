@@ -38,4 +38,6 @@ http://localhost:8000/hello
 http://localhost:8000/loadtest/iterations/$NUM_ITERATIONS
 ```
 
+### Technical Extras
+This runtime container utilizes the [Distroless](https://github.com/GoogleContainerTools/distroless) base image.  As of 8/2019, when utilizing distroless/base, the effective size of this container is 24.6 MB.  In comparison, when using [alpine](https://hub.docker.com/_/alpine) as a base, the full container image is only 13.8 MB.  Interestingly enough, the alpine version is much smaller than the Distroless version (at least for containerizing a small Go applications).
 
