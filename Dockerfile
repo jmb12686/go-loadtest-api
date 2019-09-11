@@ -1,3 +1,7 @@
+##TODO: Implement multistage build and vars: https://github.com/moby/buildkit/pull/499
+#FROM --platform=$BUILDPLATFORM golang as build
+
+
 # Use the offical Golang image to create a build artifact.
 # This is based on Debian and sets the GOPATH to /go.
 # https://hub.docker.com/_/golang
@@ -11,12 +15,16 @@ COPY . .
 # Build the command inside the container.
 # (You may fetch or manage dependencies here,
 # either manually or with a tool like "godep".)
+ARG TARGETPLATFORM
+ARG TARGETOS
+ARG TARGETARCH
+## GOOS=${TARGETOS} GOARCH=${TARGETARCH}
 ARG opts
 RUN env ${opts} go build -v -o go-loadtest-api
-# RUN CGO_ENABLED=0 GOOS=linux go build -v -o go-loadtest-api
 
 # Use a Docker multi-stage build to create a lean production image.
 # https://docs.docker.com/develop/develop-images/multistage-build/#use-multi-stage-builds
+# FROM --platform=TARGETPLATFORM alpine
 FROM alpine
 RUN apk add --no-cache ca-certificates
 

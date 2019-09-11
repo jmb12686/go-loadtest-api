@@ -6,3 +6,12 @@ docker run \
   --rm \
   --privileged \
   multiarch/qemu-user-static:register --reset
+echo "##################  start buildx tasks  ##################"
+docker buildx ls
+echo "##################  Create new buildx builder  ##################"
+docker buildx create --name mybuilder
+echo "##################  Use new buildx builder  ##################"
+docker buildx use mybuilder
+echo "##################  Inspect buildx builder  ##################"
+docker buildx inspect --bootstrap
+echo "################## done with pre_build  ##################"
