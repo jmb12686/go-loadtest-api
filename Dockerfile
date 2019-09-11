@@ -1,7 +1,7 @@
 # Use the offical Golang image to create a build artifact.
 # This is based on Debian and sets the GOPATH to /go.
 # https://hub.docker.com/_/golang
-FROM golang:1.12 as builder
+FROM golang:1.13 as builder
 
 # Copy local code to the container image.
 WORKDIR /go/src/github.com/jmb12686/go-loadtest-api
@@ -11,7 +11,9 @@ COPY . .
 # Build the command inside the container.
 # (You may fetch or manage dependencies here,
 # either manually or with a tool like "godep".)
-RUN CGO_ENABLED=0 GOOS=linux go build -v -o go-loadtest-api
+ARG opts
+RUN env ${opts} go build -v -o go-loadtest-api
+# RUN CGO_ENABLED=0 GOOS=linux go build -v -o go-loadtest-api
 
 # Use a Docker multi-stage build to create a lean production image.
 # https://docs.docker.com/develop/develop-images/multistage-build/#use-multi-stage-builds

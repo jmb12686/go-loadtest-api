@@ -1,0 +1,13 @@
+#!/bin/bash
+docker build \
+  --build-arg ARCH="arm" \
+  --build-arg opts="CGO_ENABLED=0 GOARCH=arm GOOS=linux"
+  -t $DOCKER_REPO:arm \
+  -f $DOCKERFILE_PATH .
+
+docker build \
+  --build-arg ARCH="amd64" \
+  --build-arg opts="CGO_ENABLED=0 GOARCH=amd64 GOOS=linux"
+  -t $DOCKER_REPO:amd64 \
+  -t $DOCKER_REPO:$DOCKER_TAG \
+  -f $DOCKERFILE_PATH .
